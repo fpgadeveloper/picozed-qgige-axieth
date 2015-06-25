@@ -42,16 +42,16 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/src/constraints/pzfmc-z7010-z7020.xdc"]"
+set file "[file normalize "$origin_dir/src/constraints/pzfmc-z7015-z7030.xdc"]"
 set file_added [add_files -norecurse -fileset $obj $file]
-set file "$origin_dir/src/constraints/pzfmc-z7010-z7020.xdc"
+set file "$origin_dir/src/constraints/pzfmc-z7015-z7030.xdc"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property "file_type" "XDC" $file_obj
 
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
-set_property "target_constrs_file" "[file normalize "$origin_dir/src/constraints/pzfmc-z7010-z7020.xdc"]" $obj
+set_property "target_constrs_file" "[file normalize "$origin_dir/src/constraints/pzfmc-z7015-z7030.xdc"]" $obj
 
 # Create 'sim_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sim_1] ""]} {
