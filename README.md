@@ -12,6 +12,17 @@ The design contains 4 AXI Ethernet blocks configured with DMAs.
 
 ![All AXI Ethernet](http://ethernetfmc.com/wp-content/uploads/2014/10/qgige_all_axi_ethernet.png "Ethernet FMC Quad Gig Ethernet All AXI Ethernet")
 
+### Differences between designs
+
+This repository contains a Vivado design for each of the PicoZed versions: 7Z010, 7Z020, 7Z015 and 7Z030.
+The main differences between the designs are described below:
+
+* 7Z010: We can't fit 4x AXI Ethernet IPs with DMAs into the 7Z010 device, so instead we use 3x AXI Ethernet and 1x
+GMII-to-RGMII connected to GEM1 (GEM0 could be connected to the PicoZed's onboard PHY if desired).
+* 7Z020: We use 4x AXI Ethernet IPs. The constraints file uses the 2.5V IO standards.
+* 7Z015: We use 4x AXI Ethernet IPs. The constraints file uses the 2.5V IO standards.
+* 7Z030: We use 4x AXI Ethernet IPs. The constraints file uses the 1.8V IO standards because this device has HP I/Os.
+
 ### Requirements
 
 * Vivado 2014.4 (see Library modifications below)
