@@ -82,9 +82,9 @@ startgroup
 create_bd_cell -type ip -vlnv xilinx.com:ip:axi_ethernet:6.2 axi_ethernet_2
 endgroup
 
-# Configure ports 1,2 and 3 for "Don't include shared logic"
+# Configure ports 0 and 2 for "Don't include shared logic"
 set_property -dict [list CONFIG.SupportLevel {0}] [get_bd_cells axi_ethernet_2]
-set_property -dict [list CONFIG.SupportLevel {0}] [get_bd_cells axi_ethernet_1]
+set_property -dict [list CONFIG.SupportLevel {0}] [get_bd_cells axi_ethernet_0]
 
 # Apply block automation for all AXI Ethernet: RGMII with DMA
 startgroup
@@ -187,14 +187,14 @@ connect_bd_net [get_bd_pins axi_ethernet_2_fifo/interrupt] [get_bd_pins xlconcat
 
 # Connect AXI Ethernet clocks
 
-connect_bd_net [get_bd_pins axi_ethernet_0/gtx_clk_out] [get_bd_pins axi_ethernet_1/gtx_clk]
-connect_bd_net [get_bd_pins axi_ethernet_0/gtx_clk90_out] [get_bd_pins axi_ethernet_1/gtx_clk90]
-connect_bd_net [get_bd_pins axi_ethernet_0/gtx_clk_out] [get_bd_pins axi_ethernet_2/gtx_clk]
-connect_bd_net [get_bd_pins axi_ethernet_0/gtx_clk90_out] [get_bd_pins axi_ethernet_2/gtx_clk90]
+connect_bd_net [get_bd_pins axi_ethernet_1/gtx_clk_out] [get_bd_pins axi_ethernet_0/gtx_clk]
+connect_bd_net [get_bd_pins axi_ethernet_1/gtx_clk90_out] [get_bd_pins axi_ethernet_0/gtx_clk90]
+connect_bd_net [get_bd_pins axi_ethernet_1/gtx_clk_out] [get_bd_pins axi_ethernet_2/gtx_clk]
+connect_bd_net [get_bd_pins axi_ethernet_1/gtx_clk90_out] [get_bd_pins axi_ethernet_2/gtx_clk90]
 
 # Connect 200MHz AXI Ethernet ref_clk and GMII-to-RGMII clkin
 
-connect_bd_net [get_bd_pins axi_ethernet_0/ref_clk] [get_bd_pins processing_system7_0/FCLK_CLK2]
+connect_bd_net [get_bd_pins axi_ethernet_1/ref_clk] [get_bd_pins processing_system7_0/FCLK_CLK2]
 connect_bd_net [get_bd_pins gmii_to_rgmii_0/clkin] [get_bd_pins processing_system7_0/FCLK_CLK2]
 
 # Connect GMII-to-RGMII resets
@@ -207,7 +207,7 @@ connect_bd_net -net [get_bd_nets rst_processing_system7_0_100M_peripheral_reset]
 startgroup
 create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf:2.0 util_ds_buf_0
 endgroup
-connect_bd_net [get_bd_pins util_ds_buf_0/IBUF_OUT] [get_bd_pins axi_ethernet_0/gtx_clk]
+connect_bd_net [get_bd_pins util_ds_buf_0/IBUF_OUT] [get_bd_pins axi_ethernet_1/gtx_clk]
 startgroup
 create_bd_port -dir I -from 0 -to 0 ref_clk_p
 connect_bd_net [get_bd_pins /util_ds_buf_0/IBUF_DS_P] [get_bd_ports ref_clk_p]
