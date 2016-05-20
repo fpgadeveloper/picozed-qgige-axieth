@@ -3,8 +3,6 @@ picozed-qgige-axieth
 
 Example design for the [Quad Gigabit Ethernet FMC](http://ethernetfmc.com "Ethernet FMC") with the [PicoZed](http://picozed.org "PicoZed") using AXI Ethernet
 
-**ATTENTION**: PLEASE NOTE THAT THIS PROJECT IS DESIGNED FOR A FUTURE VERSION OF THE PICOZED FMC CARRIER WHICH IS NOT PRESENTLY AVAILABLE. THIS MESSAGE WILL BE REMOVED WHEN THE NEW PICOZED FMC CARRIER BECOMES AVAILABLE.
-
 ### Description
 
 This project demonstrates the use of the Opsero [Quad Gigabit Ethernet FMC](http://ethernetfmc.com "Ethernet FMC").
@@ -25,10 +23,10 @@ GMII-to-RGMII connected to GEM1 (GEM0 could be connected to the PicoZed's onboar
 
 ### Requirements
 
-* Vivado 2015.4 (see Library modifications below)
+* Vivado 2016.1 (see Library modifications below)
 * [Ethernet FMC](http://ethernetfmc.com "Ethernet FMC")
 * [PicoZed](http://picozed.org "PicoZed")
-* [PicoZed FMC Carrier](http://picozed.org/product/picozed-carrier-card "PicoZed FMC Carrier")
+* [PicoZed FMC Carrier Card V2](http://zedboard.org/product/picozed-fmc-carrier-card-v2 "PicoZed FMC Carrier Card V2")
 * [Xilinx Soft TEMAC license](http://ethernetfmc.com/getting-a-license-for-the-xilinx-tri-mode-ethernet-mac/ "Xilinx Soft TEMAC license")
 
 ### Installation of PicoZed board definition files
@@ -45,10 +43,10 @@ https://github.com/fpgadeveloper/picozed-qgige-axieth/tree/master/Vivado/boards/
 * `picozed_7020`
 * `picozed_7030`
 
-Copy those folders and their contents into the `C:\Xilinx\Vivado\2015.4\data\boards\board_files` folder (this may
+Copy those folders and their contents into the `C:\Xilinx\Vivado\2016.1\data\boards\board_files` folder (this may
 be different on your machine, depending on your Vivado installation directory).
 
-### Library modifications for Vivado 2015.4
+### Library modifications for Vivado 2016.1
 
 To use this project, a modification must be made to the lwIP libraries
 provided by the Xilinx SDK. The modification can be made either to the
@@ -60,7 +58,7 @@ in the BSP sources being overwritten with the SDK sources.
 
 Open the following file:
 
-`C:\Xilinx\SDK\2015.4\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_2\src\contrib\ports\xilinx\netif\xaxiemacif_dma.c`
+`C:\Xilinx\SDK\2016.1\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_2\src\contrib\ports\xilinx\netif\xaxiemacif_dma.c`
 
 Replace this line of code:
 
@@ -74,7 +72,7 @@ With this one:
 
 Open the following file:
 
-`C:\Xilinx\SDK\2015.4\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_2\src\contrib\ports\xilinx\netif\xemacpsif_physpeed.c`
+`C:\Xilinx\SDK\2016.1\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_2\src\contrib\ports\xilinx\netif\xemacpsif_physpeed.c`
 
 Add the following define statement to the code:
 
