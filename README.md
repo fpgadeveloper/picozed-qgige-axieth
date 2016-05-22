@@ -48,8 +48,8 @@ be different on your machine, depending on your Vivado installation directory).
 
 ### Library modifications for Vivado 2016.1
 
-To use this project, a modification must be made to the lwIP libraries
-provided by the Xilinx SDK. The modification can be made either to the
+To use this project, some modifications must be made to the lwIP libraries
+provided by the Xilinx SDK. These modifications can be made either to the
 BSP code of your SDK workspace, or to the SDK sources. I personally
 recommend modifying the SDK sources as every rebuild of the BSP results
 in the BSP sources being overwritten with the SDK sources.
@@ -68,11 +68,11 @@ With this one:
 
 `dmaconfig = XAxiDma_LookupConfig(xemac->topology_index);`
 
-#### Modification to xemacpsif_physpeed.c
+#### Modification to xaxiemacif_physpeed.c
 
 Open the following file:
 
-`C:\Xilinx\SDK\2016.1\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_4\src\contrib\ports\xilinx\netif\xemacpsif_physpeed.c`
+`C:\Xilinx\SDK\2016.1\data\embeddedsw\ThirdParty\sw_services\lwip141_v1_4\src\contrib\ports\xilinx\netif\xaxiemacif_physpeed.c`
 
 Add the following define statement to the code:
 
@@ -142,7 +142,7 @@ unsigned int get_phy_speed_88E1510(XAxiEthernet *xaxiemacp, u32 phy_addr)
 
 	XAxiEthernet_PhyRead(xaxiemacp, phy_addr, IEEE_STATUS_REG_OFFSET, &status);
 	while ( !(status & IEEE_STAT_AUTONEGOTIATE_COMPLETE) ) {
-		sleep(1);
+		AxiEthernetUtilPhyDelay(1);
 		XAxiEthernet_PhyRead(xaxiemacp, phy_addr, IEEE_COPPER_SPECIFIC_STATUS_REG_2,
 																	&temp);
 		if (temp & IEEE_AUTONEG_ERROR_MASK) {
