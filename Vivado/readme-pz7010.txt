@@ -1,5 +1,5 @@
-Working port arrangements for the 7z010 design
-==============================================
+Working port arrangements for the PicoZed 7010 design
+=====================================================
 
 It's difficult to get 4 soft Ethernet MACs to fit into the 7z010 device, and the only way that I've found to achieve it
 is to use 3x AXI Ethernet IPs with FIFOs (rather than DMAs) and 1x GMII-to-RGMII core hooked up to one of the GEMs.

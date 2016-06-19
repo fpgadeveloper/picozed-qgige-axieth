@@ -93,7 +93,7 @@ current_run -implementation [get_runs impl_1]
 puts "INFO: Project created:pz_7z030_qgige_axieth"
 
 # Create block design
-source $origin_dir/src/bd/design_1.tcl
+source $origin_dir/src/bd/design_1-pz.tcl
 
 # Generate the wrapper
 set design_name [get_bd_designs]
